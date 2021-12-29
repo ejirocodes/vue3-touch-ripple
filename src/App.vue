@@ -4,69 +4,72 @@ import Ripple from "./package/Ripple.vue";
 
 <template>
   <main>
-    <Ripple />
+    <div class="example">
+      <Ripple class="love" color="#fff">
+        <div class="heart">
+          <span class="text">Ejiro</span>
+        </div>
+      </Ripple>
+    </div>
+
+    <div class="example">
+      <touch-ripple>
+        <div class="heart">
+          <span class="text">Surmon</span>
+        </div>
+      </touch-ripple>
+    </div>
   </main>
 </template>
 
-<style>
-@import "./assets/base.css";
-
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
+<style lang="scss" scoped>
+.example {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   padding: 2rem;
 
-  font-weight: normal;
-}
+  .love {
+    cursor: pointer;
 
-header {
-  line-height: 1.5;
-}
+    > .heart {
+      position: relative;
+      width: 420px;
+      height: 360px;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
+      > .text {
+        color: white;
+        z-index: 999999;
+        font-size: 30px;
+        margin-bottom: 60px;
+        margin-left: 20px;
+        user-select: none;
+      }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-}
+      &:before,
+      &:after {
+        position: absolute;
+        content: "";
+        left: 220px;
+        top: 10px;
+        width: 220px;
+        height: 340px;
+        background: #fc2e5a;
+        border-radius: 200px 200px 0 0;
+        transform: rotate(-45deg);
+        transform-origin: 0 100%;
+      }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
-}
-
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
-
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
+      &:after {
+        left: 0;
+        transform: rotate(45deg);
+        transform-origin: 100% 100%;
+      }
+    }
   }
 }
 </style>
