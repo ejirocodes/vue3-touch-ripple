@@ -11,14 +11,6 @@ import Ripple from "./package/Ripple.vue";
         </div>
       </Ripple>
     </div>
-
-    <div class="example">
-      <touch-ripple>
-        <div class="heart">
-          <span class="text">Surmon</span>
-        </div>
-      </touch-ripple>
-    </div>
   </main>
 </template>
 

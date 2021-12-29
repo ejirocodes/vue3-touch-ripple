@@ -17,7 +17,7 @@ export default defineComponent({
   name: "touch-ripple-core",
   props: {
     id: {
-      type: String,
+      type: Number,
       default: "",
     },
     color: {
