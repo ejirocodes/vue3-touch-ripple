@@ -63,7 +63,12 @@ export default defineComponent({
     RippleCore,
   },
   emits: ["end"],
-  setup(props, { emit }) {
+  setup(props) {
+    // interface Ripples {
+    //   id: number;
+    //    [propName: string]
+    //   styles: { size, left; top };
+    // }
     const id = ref(0);
     const ripples = ref([]);
     const rippleCount = ref(0);
@@ -86,7 +91,7 @@ export default defineComponent({
       );
     });
 
-    // 鼠标抬起
+    // mouse up
     function mouseup() {
       mouseuped.value = true;
       if (keepLastRipple.value) {
@@ -94,12 +99,12 @@ export default defineComponent({
       }
     }
 
-    // 鼠标按下
+    // mouse down
     function mousedown(event: MouseEvent) {
-      // 整理基本属性
+      // organise basic attributes
       mouseuped.value = false;
 
-      // 计算点击位置、宿主容器尺寸
+      // Calculate the click position and host container size
       //   @ts-ignore
       const { top: innerY, left: innerX } = inner.value.getBoundingClientRect();
       const { clientX: layerX, clientY: layerY } = event;
@@ -107,7 +112,7 @@ export default defineComponent({
       const positionY = layerY - innerY;
       const { size, left, top } = getRippleSize(positionX, positionY);
 
-      // 添加动画进队列
+      // Add animation to queue
       ripples.value.push({
         //   @ts-ignore
         id: (id.value += 1),
@@ -121,22 +126,22 @@ export default defineComponent({
         (ripple) => ripple?.id === id
       );
       if (targetIndex > -1) {
-        // 如果鼠标未抬起，且是最后一个动画，则这个动画的删除权应该交给鼠标抬起事件
+        // If the mouse is not up, and it is the last animation, the right to delete this animation should be given to the mouse up event
         if (mouseuped.value && targetIndex === ripples.value.length - 1) {
           keepLastRipple.value = true;
-          // 否则，直接删除
+          // Otherwise, delete it directly
         } else {
           ripples.value.splice(targetIndex, 1);
         }
       }
     }
 
-    // 获取容器尺寸
+    // Get container size
     function getRippleSize(positionX: number, positionY: number) {
       const width = inner.value?.clientWidth;
       const height = inner.value?.clientHeight;
 
-      // 得到点击位置距离最远的点，计算出这两点之间的距离
+      // Get the point that is the furthest away from the clicked position, and calculate the distance between these two points
       const square = (x: number) => x * x;
       const coordinates = [
         [0, 0],
@@ -150,7 +155,7 @@ export default defineComponent({
         );
       });
 
-      // 最长边即为半径
+      // The longest side is the radius
       const maxCoordinate = Math.max.apply({}, coordinates);
 
       const size = maxCoordinate * 2;
@@ -160,11 +165,11 @@ export default defineComponent({
       return { size, left, top };
     }
 
-    // 清空动画队列
+    // Empty the animation queue
     function clearRipples() {
       ripples.value = [];
     }
-    // 真实动画队列结束
+    // The real animation queue ends
     function rippleEnter() {
       rippleCount.value += 1;
     }
