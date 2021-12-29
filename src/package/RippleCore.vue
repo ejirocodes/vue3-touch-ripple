@@ -1,10 +1,17 @@
 <template>
   <div></div>
-  <!-- <div class="ripple-core" :style="computeCoreStyle"></div> -->
+  <div class="ripple-core" :style="computeCoreStyle"></div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, nextTick } from "vue";
+import {
+  defineComponent,
+  ref,
+  computed,
+  nextTick,
+  onMounted,
+  onBeforeUnmount,
+} from "vue";
 import { Timers, CoreStyle } from "../types/interface";
 
 export default defineComponent({
@@ -23,7 +30,7 @@ export default defineComponent({
       default: 0.2,
     },
     speed: {
-      type: [Number, String],
+      type: [Number],
       default: 0.5,
     },
     styles: {
@@ -35,7 +42,8 @@ export default defineComponent({
       default: "all 0.5s ease-in-out",
     },
   },
-  setup(props) {
+  emits: ["end"],
+  setup(props, { emit }) {
     const timers = ref<Timers>({
       transform: null,
       rippling: null,
@@ -47,6 +55,10 @@ export default defineComponent({
       transform: "scale(0)",
     });
 
+    const computeSpeed = computed(() => {
+      return baseSpeed.value / props.speed;
+    });
+
     async function startRipple() {
       await nextTick();
       // start the ripple
@@ -56,24 +68,43 @@ export default defineComponent({
 
       // End ripples
 
-      // timers.value.rippling = setTimeout(() => {
-      //   this.$emit("end", props.id);
-      // }, this.computeSpeed * 1000);
-
-      //  this.$nextTick(() => {
-
-      //       // 开始涟漪
-      //       this.timers.transform = setTimeout(() => {
-      //         this.coreStyle.transform = 'scale(1)'
-      //       }, 0)
-
-      //       // 结束涟漪
-      //       this.timers.rippling = setTimeout(() => {
-      //         this.$emit('end', this.id)
-      //       }, this.computeSpeed * 1000)
-      //     })
+      timers.value.rippling = setTimeout(() => {
+        emit("end", props.id);
+      }, computeSpeed.value * 1000);
     }
-    return {};
+
+    const computeCoreStyle = computed(() => {
+      return {
+        "z-index": props.id,
+        opacity: props.opacity,
+        top: `${props.styles.top}px`,
+        left: `${props.styles.left}px`,
+        width: `${props.styles.size}px`,
+        height: `${props.styles.size}px`,
+        transform: coreStyle.value.transform,
+        "background-color": props.color,
+        "transition-duration": `${computeSpeed.value}s, 0.4s`,
+        "transition-timing-function": `${props.transition}, ease-out`,
+      };
+    });
+
+    startRipple();
+
+    onBeforeUnmount(() => {
+      if (timers.value.transform) {
+        clearTimeout(timers.value.transform);
+        timers.value.transform = null;
+      }
+      if (timers.value.rippling) {
+        clearTimeout(timers.value.rippling);
+        timers.value.rippling = null;
+      }
+    });
+
+    onMounted(() => {
+      startRipple();
+    });
+    return { computeCoreStyle };
   },
 });
 </script>
