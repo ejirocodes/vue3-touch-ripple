@@ -1,5 +1,4 @@
 <template>
-  <div></div>
   <div class="ripple-core" :style="computeCoreStyle"></div>
 </template>
 
