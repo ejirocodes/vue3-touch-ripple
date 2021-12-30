@@ -1,7 +1,3 @@
-<script setup lang="ts">
-import Ripple from "./package/Ripple.vue";
-</script>
-
 <template>
   <main>
     <div class="example">
@@ -13,6 +9,17 @@ import Ripple from "./package/Ripple.vue";
     </div>
   </main>
 </template>
+
+<script lang="ts">
+import { defineComponent } from "vue";
+import Ripple from "./lib/Ripple.vue";
+export default defineComponent({
+  name: "App",
+  components: {
+    Ripple,
+  },
+});
+</script>
 
 <style lang="scss" scoped>
 .example {

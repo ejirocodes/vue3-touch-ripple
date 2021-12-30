@@ -18,7 +18,7 @@ export default defineComponent({
   props: {
     id: {
       type: Number,
-      default: "",
+      default: 0,
     },
     color: {
       type: String,

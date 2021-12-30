@@ -14,7 +14,7 @@
         @enter="rippleEnter"
         @after-leave="rippleLeave"
       >
-        <ripple-core
+        <TouchRippleCore
           v-for="ripple in ripples"
           :key="ripple.id"
           :id="ripple.id"
@@ -34,7 +34,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Ripples } from "@/types/interface";
 import { defineComponent, ref, computed, onBeforeUnmount } from "vue";
-import RippleCore from "./core.vue";
+import TouchRippleCore from "./TouchRippleCore.vue";
 
 export default defineComponent({
   name: "touch-ripple",
@@ -61,7 +61,7 @@ export default defineComponent({
     },
   },
   components: {
-    RippleCore,
+    TouchRippleCore,
   },
   emits: ["end"],
   setup(props) {
@@ -115,10 +115,8 @@ export default defineComponent({
       });
     }
 
-    function handleRippleEnd(id: string) {
-      const targetIndex = ripples.value.findIndex(
-        (ripple) => ripple?.id === id
-      );
+    function handleRippleEnd(id: number) {
+      const targetIndex = ripples.value.findIndex((ripple) => ripple.id === id);
       if (targetIndex > -1) {
         // If the mouse is not up, and it is the last animation, the right to delete this animation should be given to the mouse up event
         if (mouseuped.value && targetIndex === ripples.value.length - 1) {
