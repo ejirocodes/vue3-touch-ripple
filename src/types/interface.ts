@@ -6,3 +6,13 @@ export interface Timers {
 export interface CoreStyle {
   transform?: string;
 }
+
+export interface Styles {
+  size: number;
+  left: number;
+  top: number;
+}
+export interface Ripples {
+  id: number;
+  styles: Styles;
+}

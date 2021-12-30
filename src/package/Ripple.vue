@@ -32,8 +32,9 @@
 
 <script lang="ts">
 /* eslint-disable @typescript-eslint/ban-ts-comment */
+import { Ripples } from "@/types/interface";
 import { defineComponent, ref, computed, onBeforeUnmount } from "vue";
-import RippleCore from "./Core.vue";
+import RippleCore from "./core.vue";
 
 export default defineComponent({
   name: "touch-ripple",
@@ -64,13 +65,8 @@ export default defineComponent({
   },
   emits: ["end"],
   setup(props) {
-    // interface Ripples {
-    //   id: number;
-    //    [propName: string]
-    //   styles: { size, left; top };
-    // }
     const id = ref(0);
-    const ripples = ref([]);
+    const ripples = ref<Ripples[]>([]);
     const rippleCount = ref(0);
     const mouseuped = ref(true);
     const keepLastRipple = ref(false);
@@ -114,9 +110,7 @@ export default defineComponent({
 
       // Add animation to queue
       ripples.value.push({
-        //   @ts-ignore
         id: (id.value += 1),
-        //   @ts-ignore
         styles: { size, left, top },
       });
     }
