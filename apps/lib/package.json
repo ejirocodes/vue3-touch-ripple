@@ -1,7 +1,17 @@
 {
   "name": "vue3-touch-ripple",
   "version": "1.0.0",
-  "description": "",
+  "license": "MIT",
+  "keywords": [
+    "vue 3 touch ripple",
+    "vue-touch-ripple",
+    "vue touch ripple",
+    "vue ripple",
+    "vue touch",
+    "vue touch effect",
+    "vue 3 touch effect"
+  ],
+  "description": "Touch ripple component for  3.x",
   "main": "dist/vue3-touch-ripple.ssr.js",
   "browser": "dist/vue3-touch-ripple.esm.js",
   "module": "dist/vue3-touch-ripple.esm.js",
@@ -12,6 +22,7 @@
     "src/**/*.vue"
   ],
   "sideEffects": false,
+  "readme": "README.md",
   "scripts": {
     "dev": "vue-cli-service serve dev/serve.ts",
     "prebuild": "rimraf ./dist",
@@ -53,6 +64,7 @@
     "vue": "^3.0.5"
   },
   "engines": {
-    "node": ">=12"
+    "node": ">=14.0.0",
+    "npm": ">=7.0.0"
   }
 }
