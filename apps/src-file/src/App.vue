@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import Ripple from "./lib/Ripple.vue";
+import Ripple from "../../../packages/ui/Ripple.vue";
 export default defineComponent({
   name: "App",
   components: {
