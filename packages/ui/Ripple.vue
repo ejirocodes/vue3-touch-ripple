@@ -188,36 +188,33 @@ export default defineComponent({
 });
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 .v-touch-ripple {
-  position: relative;
-  display: inline-block;
-
-  > .touch-ripple {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    > .ripple-inner {
-      position: relative;
-      overflow: hidden;
-      display: block;
-      width: 100%;
-      height: 100%;
-
-      > .ripple-core {
-        display: block;
-        position: absolute;
-        border-radius: 50%;
-        transition-property: transform, opacity;
-
-        &.ripple-leave-to {
-          opacity: 0 !important;
-        }
-      }
-    }
-  }
+	 position: relative;
+	 display: inline-block;
 }
+ .v-touch-ripple > .touch-ripple {
+	 width: 100%;
+	 height: 100%;
+	 position: absolute;
+	 top: 0;
+	 left: 0;
+}
+ .v-touch-ripple > .touch-ripple > .ripple-inner {
+	 position: relative;
+	 overflow: hidden;
+	 display: block;
+	 width: 100%;
+	 height: 100%;
+}
+ .v-touch-ripple > .touch-ripple > .ripple-inner > .ripple-core {
+	 display: block;
+	 position: absolute;
+	 border-radius: 50%;
+	 transition-property: transform, opacity;
+}
+ .v-touch-ripple > .touch-ripple > .ripple-inner > .ripple-core.ripple-leave-to {
+	 opacity: 0 !important;
+}
+
 </style>
