@@ -1,7 +1,8 @@
 {
   "name": "vue3-touch-ripple",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "license": "MIT",
+  "author": "Ejiro Asiuwhu <ejiroasiuwhu10@gmail.com>",
   "keywords": [
     "vue 3 touch ripple",
     "vue-touch-ripple",
@@ -17,6 +18,7 @@
   "module": "dist/vue3-touch-ripple.esm.js",
   "unpkg": "dist/vue3-touch-ripple.min.js",
   "types": "dist/types/src/entry.esm.d.ts",
+  "repository": "https://github.com/ejirocodes/vue3-touch-ripple",
   "files": [
     "dist/*",
     "src/**/*.vue"
