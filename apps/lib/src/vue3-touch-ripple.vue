@@ -1,8 +1,8 @@
 <script lang="ts">
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { defineComponent, ref, computed, onBeforeUnmount } from "vue";
-import { Ripples } from "../../../packages/types/interface";
-import TouchRippleCore from "../../../packages/ui/TouchRippleCore.vue";
+import { Ripples } from "./types/interface";
+import TouchRippleCore from "./components/TouchRippleCore.vue";
 
 export default /*#__PURE__*/defineComponent({
   name: 'Vue3TouchRipple', // vue component name
