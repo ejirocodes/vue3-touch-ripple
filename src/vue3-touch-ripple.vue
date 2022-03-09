@@ -4,8 +4,8 @@ import { defineComponent, ref, computed, onBeforeUnmount } from "vue";
 import { Ripples } from "./types/interface";
 import TouchRippleCore from "./components/TouchRippleCore.vue";
 
-export default /*#__PURE__*/defineComponent({
-  name: 'Vue3TouchRipple', // vue component name
+export default /*#__PURE__*/ defineComponent({
+  name: "Vue3TouchRipple", // vue component name
   components: {
     TouchRippleCore,
   },
@@ -31,7 +31,7 @@ export default /*#__PURE__*/defineComponent({
       default: "all 0.5s ease-in-out",
     },
   },
- 
+
   emits: ["end"],
   setup(props) {
     const id = ref(0);
@@ -154,7 +154,7 @@ export default /*#__PURE__*/defineComponent({
       ripples,
     };
   },
-})
+});
 </script>
 
 <template>
@@ -189,34 +189,32 @@ export default /*#__PURE__*/defineComponent({
   </div>
 </template>
 
-
-<style scoped>
+<style>
 .v-touch-ripple {
-	 position: relative;
-	 display: inline-block;
+  position: relative;
+  display: inline-block;
 }
- .v-touch-ripple > .touch-ripple {
-	 width: 100%;
-	 height: 100%;
-	 position: absolute;
-	 top: 0;
-	 left: 0;
+.v-touch-ripple > .touch-ripple {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
- .v-touch-ripple > .touch-ripple > .ripple-inner {
-	 position: relative;
-	 overflow: hidden;
-	 display: block;
-	 width: 100%;
-	 height: 100%;
+.v-touch-ripple > .touch-ripple > .ripple-inner {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  width: 100%;
+  height: 100%;
 }
- .v-touch-ripple > .touch-ripple > .ripple-inner > .ripple-core {
-	 display: block;
-	 position: absolute;
-	 border-radius: 50%;
-	 transition-property: transform, opacity;
+.v-touch-ripple > .touch-ripple > .ripple-inner > .ripple-core {
+  display: block;
+  position: absolute;
+  border-radius: 50%;
+  transition-property: transform, opacity;
 }
- .v-touch-ripple > .touch-ripple > .ripple-inner > .ripple-core.ripple-leave-to {
-	 opacity: 0 !important;
+.v-touch-ripple > .touch-ripple > .ripple-inner > .ripple-core.ripple-leave-to {
+  opacity: 0 !important;
 }
-
 </style>
