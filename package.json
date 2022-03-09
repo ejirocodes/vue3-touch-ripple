@@ -1,45 +1,72 @@
 {
-  "name": "turborepo-basic-shared",
-  "version": "0.0.0",
-  "private": true,
-  "workspaces": [
-    "apps/*",
-    "packages/*"
+  "name": "vue3-touch-ripple",
+  "version": "1.1.1",
+  "license": "MIT",
+  "author": "Ejiro Asiuwhu <ejiroasiuwhu10@gmail.com>",
+  "keywords": [
+    "vue 3 touch ripple",
+    "vue-touch-ripple",
+    "vue touch ripple",
+    "vue ripple",
+    "vue touch",
+    "vue touch effect",
+    "vue 3 touch effect"
   ],
+  "description": "Touch ripple component for  3.x",
+  "main": "dist/vue3-touch-ripple.ssr.js",
+  "browser": "dist/vue3-touch-ripple.esm.js",
+  "module": "dist/vue3-touch-ripple.esm.js",
+  "unpkg": "dist/vue3-touch-ripple.min.js",
+  "types": "dist/types/src/entry.esm.d.ts",
+  "repository": "https://github.com/ejirocodes/vue3-touch-ripple",
+  "files": [
+    "dist/*",
+    "src/**/*.vue"
+  ],
+  "sideEffects": false,
+  "readme": "README.md",
   "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev --parallel",
-    "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md,vue}\""
+    "dev": "vue-cli-service serve dev/serve.ts",
+    "prebuild": "rimraf ./dist",
+    "build": "cross-env NODE_ENV=production rollup --config build/rollup.config.js",
+    "build:ssr": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
+    "build:es": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es",
+    "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife",
+    "postbuild": "rimraf ./dist/types/dev ./dist/types/src/entry.d.ts"
   },
   "devDependencies": {
-    "prettier": "^2.5.1",
-    "turbo": "latest"
+    "@babel/core": "^7.14.6",
+    "@babel/preset-env": "^7.14.7",
+    "@babel/preset-typescript": "^7.14.5",
+    "@rollup/plugin-alias": "^3.1.2",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-commonjs": "^14.0.0",
+    "@rollup/plugin-node-resolve": "^9.0.0",
+    "@rollup/plugin-replace": "^2.4.2",
+    "@vue/babel-preset-app": "^4.5.15",
+    "@vue/cli-plugin-babel": "^4.5.13",
+    "@vue/cli-plugin-typescript": "^4.5.13",
+    "@vue/cli-service": "^4.5.13",
+    "@vue/compiler-sfc": "^3.0.11",
+    "@zerollup/ts-transform-paths": "^1.7.18",
+    "cross-env": "^7.0.3",
+    "minimist": "^1.2.5",
+    "postcss": "^8.2.10",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.52.8",
+    "rollup-plugin-postcss": "^4.0.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.30.0",
+    "rollup-plugin-vue": "^6.0.0",
+    "ttypescript": "^1.5.12",
+    "typescript": "^4.0.3",
+    "vue": "^3.0.5"
   },
-  "turbo": {
-    "pipeline": {
-      "build": {
-        "dependsOn": [
-          "^build"
-        ],
-        "outputs": [
-          "dist/**",
-          ".next/**"
-        ]
-      },
-      "lint": {
-        "outputs": []
-      },
-      "dev": {
-        "cache": false
-      }
-    }
+  "peerDependencies": {
+    "vue": "^3.0.5"
   },
   "engines": {
-    "npm": ">=7.0.0",
-    "node": ">=14.0.0"
-  },
-  "dependencies": {
-    "@vue/cli-plugin-babel": "^4.5.15"
+    "node": ">=14.0.0",
+    "npm": ">=7.0.0"
   }
 }
